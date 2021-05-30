@@ -105,15 +105,6 @@ function moveIt(i){
 
 }
 
-/*function setPosition2(i){
-	var shortcut = config[i]
-	console.log(eval(shortcut.var3))
-	console.log(eval(shortcut.var4))
-    return { x: eval(shortcut.var3), y: eval(shortcut.var4)}
-}*/
-
-
-
 function setPosition2(i, idConf) {
     var shortcut = config[i]
     switch (idConf) {
