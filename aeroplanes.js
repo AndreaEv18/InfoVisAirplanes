@@ -7,7 +7,7 @@ scaleX.range([0,1000])
 
 var scaleY = d3.scaleLinear()
 scaleY.domain([0,200])
-scaleY.range([0,580])
+scaleY.range([0,500])
 
 //Quando clicco sul bottono start partirà
 //questa funzione
@@ -60,6 +60,7 @@ function drawClouds(){
 }
 
 function changePos(config) {
+    console.log(config)
     for (let i = 0; i < 8; i++) {
         if(d3.select("#plane" +i).attr("locked")!=1)
         	d3.select("#plane" +i).transition().duration(1800).attr("transform", "translate("+scaleX(setPosition2(i,config).x)+","+scaleY(setPosition2(i,config).y)+") rotate(0)")
@@ -94,12 +95,17 @@ d3.select("body")
 function moveIt(i){
 
 
-		if( flag == 0 && flagKeyX == 0){
-    		numNconfig += 1
-    		changePos(numNconfig)
+		if( flag == 0 && flagKeyX == 0 ){
+            if(numNconfig <2){
+               numNconfig += 1 
+            }
+            changePos(numNconfig)
     	}
-    	else if(flag == 0 && flagKeyY == 0){
-    		numNconfig -= 1
+    	else if(flag == 0 && flagKeyY == 0 ){
+            if(numNconfig >0){
+                numNconfig -= 1
+            }
+    		
     		changePos(numNconfig)
     	}
 
@@ -114,9 +120,6 @@ function setPosition2(i, idConf) {
             return { x: eval(shortcut.var3), y: eval(shortcut.var4)}    
         case 2: //slash
             return { x: eval(shortcut.var5), y: eval(shortcut.var6)}
-        case 3: //backslash
-                return {x: eval(shortcut.x)*(i+1), y: eval(shortcut.y)*(10-i)}
-            //return { x: eval(shortcut.x)*i/10, y: (eval(shortcut.y)-63-eval(shortcut.y)*i/10)}
         }
 }
 
