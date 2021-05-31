@@ -96,10 +96,14 @@ function moveIt(i){
 
 
 		if( flag == 0 && flagKeyX == 0 ){
-            if(numNconfig <2){
-               numNconfig += 1 
+            if(numNconfig == 2){
+               numNconfig = 0 
+               changePos(numNconfig)
+            }else{
+                numNconfig +=1 
+                changePos(numNconfig)
             }
-            changePos(numNconfig)
+            
     	}
     	else if(flag == 0 && flagKeyY == 0 ){
             if(numNconfig >0){
