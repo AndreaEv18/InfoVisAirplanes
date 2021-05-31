@@ -123,7 +123,7 @@ function setPosition2(i, idConf) {
 function readFileJson(){
     return $.ajax({
     type: 'GET',
-    url: 'http://localhost:8089/dates.json',
+    url: 'http://localhost:8090/dates.json',
     async: false,
     dataType: 'json',
     data: { action : 'getList' },
@@ -141,7 +141,7 @@ function readFileJson(){
 function readFileJsonClouds(){
     return $.ajax({
     type: 'GET',
-    url: 'http://localhost:8089/clouds.json',
+    url: 'http://localhost:8090/clouds.json',
     async: false,
     dataType: 'json',
     data: { action : 'getList' },
