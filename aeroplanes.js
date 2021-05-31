@@ -20,7 +20,7 @@ function init() {
 
 //Rimuovo lo Start button
 function removeButton() {
-    var elem = document.getElementById('dummy');
+    var elem = document.getElementById('button');
     elem.parentNode.removeChild(elem);
     return false;
 }
@@ -106,11 +106,15 @@ function moveIt(i){
             
     	}
     	else if(flag == 0 && flagKeyY == 0 ){
-            if(numNconfig >0){
-                numNconfig -= 1
+            if(numNconfig == 0){
+                numNconfig = 2
+                changePos(numNconfig)
+            }else{
+                numNconfig -=1 
+                changePos(numNconfig)
             }
     		
-    		changePos(numNconfig)
+    		
     	}
 
 }
