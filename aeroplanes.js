@@ -1,6 +1,13 @@
 
-var config = readFileJson().dates
+var dataCases = readFileJson().dates
 var configClouds = readFileJsonClouds().clouds
+
+/*
+D3 scales.
+Qui ho usato le scales di D3, ovvero delle funzioni che vanno a mappare un dominio 
+di input (valori delle coordinate x e y definite nel file json) con un range di output
+(quello corrispondente alla dimensione dell' SVG).
+*/
 var scaleX = d3.scaleLinear()
 scaleX.domain([0,500])
 scaleX.range([0,1000])
@@ -9,10 +16,10 @@ var scaleY = d3.scaleLinear()
 scaleY.domain([0,200])
 scaleY.range([0,500])
 
-//Quando clicco sul bottono start partirà
-//questa funzione
+//Prima funzione che viene eseguita quando si clicca sul bottone Start
 function init() {
     removeButton();
+    removeTitle();
 	drawAirplanes()
 	drawClouds()
 }
@@ -25,7 +32,19 @@ function removeButton() {
     return false;
 }
 
+//Rimuovo il titolo
+function removeTitle() {
+    var elem = document.getElementById('titolo');
+    elem.parentNode.removeChild(elem);
+    return false;
+}
 
+/*
+Funzione che disegna e posiziona tutti e 8 gli aeroplanini sulla mappa, nella loro
+configurazione iniziale. Inoltre verrà associato ad ognuno di essi un evento 'click',
+che associa a sua volta il click del mouse da parte dell utente con la funzione che 
+determina lo spostamento.
+*/
 function drawAirplanes(){
     var svg= d3.select("svg")
     for (let i = 0; i < 8; i++) {
@@ -43,6 +62,7 @@ function drawAirplanes(){
     }
 }
 
+//Funzione che disegnerà le 10 nuvolette sullo sfondo.
 function drawClouds(){
     var svg= d3.select("svg")
     for (let i = 0; i < 10; i++) {
@@ -60,28 +80,30 @@ function drawClouds(){
 }
 
 function changePos(config) {
-    console.log(config)
     for (let i = 0; i < 8; i++) {
         if(d3.select("#plane" +i).attr("locked")!=1)
-        	d3.select("#plane" +i).transition().duration(1800).attr("transform", "translate("+scaleX(setPosition2(i,config).x)+","+scaleY(setPosition2(i,config).y)+") rotate(0)")
+        	d3.select("#plane" +i).transition().duration(1800).attr("transform", "translate("+scaleX(setPositions(i,config).x)+","+scaleY(setPositions(i,config).y)+") rotate(0)")
             
     }
 };
 
-var numNconfig = 0
-var flag = 1
-var flagKeyX = 1
-var flagKeyY = 1
 
+var numNconfig = 0 //numero della configurazione attuale
+var flagMouse = 1 //flag che avrà associato il valore 0 quando verrà effettuato il click con il mouse
+var flagKeyX = 1 //flag che avrà associato il valore 0 quando verrà premuto x
+var flagKeyY = 1 //flag che avrà associato il valore 0 quando verrà premuto y
+
+
+//Qui si va a rilevare l'evento in cui l'utente preme il tasto x o y sulla tastiera
 d3.select("body")
     .on("keydown", function() {
     	if(event.key === "x"){
     		flagKeyX = 0
-    		flag = 0
+    		flagMouse = 0
     	}
     	else if(event.key === "y"){
     		flagKeyY = 0
-    		flag = 0
+    		flagMouse = 0
     	}
 
 
@@ -89,13 +111,23 @@ d3.select("body")
     .on("keyup", function(){
     	flagKeyX = 1
     	flagKeyY = 1
-    	flag=1})
+    	flagMouse=1})
 
 
+var audio = new Audio('MotoreSound.mp3');
+/*
+Funzione che va a determinare il movimento degli aeroplani e quindi il 
+passaggio da un aloro configurazione a un'altra in base al rilevamento
+della pressione del tasto x o y.
+In particolare se viene premuto il primo insieme al click del mouse allora
+tutti e 8 gli aeroplanini si muoveranno verso la prossima configurazione.
+Altrimenti, verso la precedente.
+*/
 function moveIt(i){
+        
+        new Audio('MotoreSound/'+'.mp3').play(); 
 
-
-		if( flag == 0 && flagKeyX == 0 ){
+		if( flagMouse == 0 && flagKeyX == 0 ){
             if(numNconfig == 2){
                numNconfig = 0 
                changePos(numNconfig)
@@ -105,7 +137,7 @@ function moveIt(i){
             }
             
     	}
-    	else if(flag == 0 && flagKeyY == 0 ){
+    	else if(flagMouse == 0 && flagKeyY == 0 ){
             if(numNconfig == 0){
                 numNconfig = 2
                 changePos(numNconfig)
@@ -119,15 +151,16 @@ function moveIt(i){
 
 }
 
-function setPosition2(i, idConf) {
-    var shortcut = config[i]
+//Funzione che determina la posizione della nuova configurazione
+function setPositions(i, idConf) {
+    var aeroplane = dataCases[i]
     switch (idConf) {
-        case 0: //linearetta
-            return { x: eval(shortcut.var1), y: eval(shortcut.var2)}
-        case 1: //lineaverticale
-            return { x: eval(shortcut.var3), y: eval(shortcut.var4)}    
-        case 2: //slash
-            return { x: eval(shortcut.var5), y: eval(shortcut.var6)}
+        case 0: 
+            return { x: eval(aeroplane.var1), y: eval(aeroplane.var2)}
+        case 1: 
+            return { x: eval(aeroplane.var3), y: eval(aeroplane.var4)}    
+        case 2: 
+            return { x: eval(aeroplane.var5), y: eval(aeroplane.var6)}
         }
 }
 
@@ -139,7 +172,6 @@ function readFileJson(){
     dataType: 'json',
     data: { action : 'getList' },
     done: function(results) {
-        // Uhm, maybe I don't even need this?
         JSON.parse(results);
         return results;
     },
@@ -157,7 +189,6 @@ function readFileJsonClouds(){
     dataType: 'json',
     data: { action : 'getList' },
     done: function(results) {
-        // Uhm, maybe I don't even need this?
         JSON.parse(results);
         return results;
     },
@@ -167,12 +198,14 @@ function readFileJsonClouds(){
    }).responseJSON;
 }
 
+//Funzione che viene utilizzata per settare la posizione iniziale degli aeroplanini
 function setPosition(i) {
-    var shortcut = config[i]
-    return { x: eval(shortcut.var1), y: eval(shortcut.var2)}
+    var aeroplane = dataCases[i]
+    return { x: eval(aeroplane.var1), y: eval(aeroplane.var2)}
 }
 
+//Funzione che viene utilizzata per settare la posizione delle nuvolette
 function setPositionClouds(i) {
-    var shortcut = configClouds[i]
-    return { x: eval(shortcut.var1), y: eval(shortcut.var2)}
+    var cloud = configClouds[i]
+    return { x: eval(cloud.var1), y: eval(cloud.var2)}
 }
