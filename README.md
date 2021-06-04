@@ -1,6 +1,8 @@
 # InfoVisAirplanes
 This is a repository for the mini-project assigned by the professor of InfoVis course of RomaTre University.
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Nine_BAE_Hawks_of_the_UK_Red_Arrows_at_the_2018_RIAT%2C_England.jpg/1024px-Nine_BAE_Hawks_of_the_UK_Red_Arrows_at_the_2018_RIAT%2C_England.jpg" width="300" height="300">
+
 Crea un file json con dei dati multivariati: ci sono 8 data-cases e ogni
 data-case ha sei variabili quantitative i cui valori sono tutti
 positivi. In base a questi dati disegna 10 aeroplanini (è sufficiente la
