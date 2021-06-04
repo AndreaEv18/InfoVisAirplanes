@@ -114,7 +114,7 @@ d3.select("body")
     	flagMouse=1})
 
 
-var audio = new Audio('MotoreSound.mp3');
+var sound = document.getElementById('motore')
 /*
 Funzione che va a determinare il movimento degli aeroplani e quindi il 
 passaggio da un aloro configurazione a un'altra in base al rilevamento
@@ -125,7 +125,8 @@ Altrimenti, verso la precedente.
 */
 function moveIt(i){
         
-        new Audio('MotoreSound/'+'.mp3').play(); 
+        
+        sound.play()
 
 		if( flagMouse == 0 && flagKeyX == 0 ){
             if(numNconfig == 2){
@@ -167,7 +168,7 @@ function setPositions(i, idConf) {
 function readFileJson(){
     return $.ajax({
     type: 'GET',
-    url: 'http://localhost:8090/dates.json',
+    url: 'http://localhost:8082/dates.json',
     async: false,
     dataType: 'json',
     data: { action : 'getList' },
@@ -184,7 +185,7 @@ function readFileJson(){
 function readFileJsonClouds(){
     return $.ajax({
     type: 'GET',
-    url: 'http://localhost:8090/clouds.json',
+    url: 'http://localhost:8082/clouds.json',
     async: false,
     dataType: 'json',
     data: { action : 'getList' },
