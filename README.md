@@ -4,7 +4,7 @@ Questa è la repository per il mini-progetto assegnatomi dal prof. Maurizio Patr
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/T-50B_Blackeagles_Demo_Flight_%2812201493173%29.jpg/1200px-T-50B_Blackeagles_Demo_Flight_%2812201493173%29.jpg" width="1000" height="500">
 
 --------------------------------------------------------------------------------
-Testo del mini-progetto:\
+Testo del mini-progetto:
 
 Crea un file json con dei dati multivariati: ci sono *8 data-cases* e ogni
 data-case ha *sei* variabili quantitative i cui valori sono tutti
@@ -28,11 +28,11 @@ nella *configurazione precedente*.\
 Fai in modo che i cambi di posizione degli aeroplanini avvengano con un'animazione fluida. Usa le scale D3.js
 per mappare l'intervallo dei valori delle variabili (che è arbitrario)
 sull'intervallo dei valori delle coordinate, che dipende dalla tua
-interfaccia.\
+interfaccia.
 
 --------------------------------------------------------------------------------
 
-Per il funzionamento, recarsi tramite terminale nella cartella scaricata e avviare il server tramite il comando:\
+Per il funzionamento, recarsi tramite terminale nella cartella scaricata e avviare il server tramite il comando:
 
 python3 -m http.server 8080
 
