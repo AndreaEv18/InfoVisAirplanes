@@ -24,9 +24,10 @@ function init() {
 	drawClouds()
 }
 
-
+var button = document.getElementById('buttonEffect')
 //Rimuovo lo Start button
 function removeButton() {
+    button.play()
     var elem = document.getElementById('button');
     elem.parentNode.removeChild(elem);
     return false;
