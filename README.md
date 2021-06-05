@@ -36,4 +36,9 @@ Per il funzionamento, recarsi tramite terminale nella cartella scaricata e avvia
 
 python3 -m http.server 8080
 
+--------------------------------------------------------------------------------
+
+NB: in basso a destra nell'interfaccia è stato aggiunto un controllo audio, in quanto purtroppo diversi browser non supportano più l'autoplay di musica in sottofondo. Perciò se non dovesse automaticamente partire la soundtrack, avviarla tramite il tasto play. :music:
+
+
 
