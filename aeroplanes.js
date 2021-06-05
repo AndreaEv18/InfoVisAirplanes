@@ -126,9 +126,10 @@ Altrimenti, verso la precedente.
 function moveIt(i){
         
         
-        sound.play()
+        
 
 		if( flagMouse == 0 && flagKeyX == 0 ){
+            sound.play()
             if(numNconfig == 2){
                numNconfig = 0 
                changePos(numNconfig)
@@ -139,6 +140,7 @@ function moveIt(i){
             
     	}
     	else if(flagMouse == 0 && flagKeyY == 0 ){
+            sound.play()
             if(numNconfig == 0){
                 numNconfig = 2
                 changePos(numNconfig)

@@ -44,9 +44,10 @@
 	margin-top: -40px;
 }
 
-
-
-
-
+body {
+	background-image:url("/Images/skyy.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
