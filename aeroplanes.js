@@ -25,6 +25,7 @@ function init() {
 }
 
 var button = document.getElementById('buttonEffect')
+button.volume=0.5
 //Rimuovo lo Start button
 function removeButton() {
     button.play()
@@ -116,6 +117,7 @@ d3.select("body")
 
 
 var sound = document.getElementById('motore')
+sound.volume = 0.4
 /*
 Funzione che va a determinare il movimento degli aeroplani e quindi il 
 passaggio da un aloro configurazione a un'altra in base al rilevamento
