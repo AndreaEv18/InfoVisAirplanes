@@ -1,7 +1,7 @@
 .myButton {
 	position: absolute;
-	margin-left: 360px;
-	margin-top: 230px; 
+	margin-left: 500px;
+	margin-top: 300px; 
 	box-shadow: 0px 1px 0px 0px #f0f7fa;
 	background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
 	background-color:#33bdef;
@@ -24,8 +24,8 @@
 
 .myText{
 	position: absolute;
-	margin-left: 300px;
-	margin-top: 170px;
+	margin-left: 440px;
+	margin-top: 200px;
 	font-family: Georgia, serif;
 	font-size: 20px;
 	letter-spacing: 2px;
@@ -40,8 +40,14 @@
 
 .myMusic{
 	position: absolute;
-	margin-left: 700px;
-	margin-top: -40px;
+	margin-left: 800px;
+	margin-top: -5px;
+}
+
+.myFirma{
+	position: absolute;
+	margin-left: 10px;
+	margin-top: 20px;
 }
 
 body {

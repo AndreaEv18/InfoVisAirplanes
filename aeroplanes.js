@@ -10,11 +10,11 @@ di input (valori delle coordinate x e y definite nel file json) con un range di 
 */
 var scaleX = d3.scaleLinear()
 scaleX.domain([0,500])
-scaleX.range([0,1000])
+scaleX.range([0,1300])
 
 var scaleY = d3.scaleLinear()
 scaleY.domain([0,200])
-scaleY.range([0,500])
+scaleY.range([0,600])
 
 //Prima funzione che viene eseguita quando si clicca sul bottone Start
 function init() {
@@ -173,7 +173,7 @@ function setPositions(i, idConf) {
 function readFileJson(){
     return $.ajax({
     type: 'GET',
-    url: 'http://localhost:8082/dates.json',
+    url: 'http://localhost:8096/dates.json',
     async: false,
     dataType: 'json',
     data: { action : 'getList' },
@@ -190,7 +190,7 @@ function readFileJson(){
 function readFileJsonClouds(){
     return $.ajax({
     type: 'GET',
-    url: 'http://localhost:8082/clouds.json',
+    url: 'http://localhost:8096/clouds.json',
     async: false,
     dataType: 'json',
     data: { action : 'getList' },
