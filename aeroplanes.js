@@ -1,6 +1,6 @@
 
-var dataCases = readFileJson().dates
-var configClouds = readFileJsonClouds().clouds
+var dataCases = null;
+var configClouds = null;
 
 /*
 D3 scales.
@@ -51,7 +51,7 @@ function drawAirplanes(){
     var svg= d3.select("svg")
     for (let i = 0; i < 8; i++) {
         svg.append("svg:image")
-        .attr("xlink:href", "images/airplane.png")
+        .attr("xlink:href", "Images/airplane.png")
         .attr("id", "plane"+i)
         .attr("locked", 0)
 		.attr("width", 100 )
@@ -69,7 +69,7 @@ function drawClouds(){
     var svg= d3.select("svg")
     for (let i = 0; i < 10; i++) {
         svg.append("svg:image")
-        .attr("xlink:href", "images/clouds.png")
+        .attr("xlink:href", "Images/clouds.png")
         .attr("id", "cloud"+i)
         .attr("locked", 0)
 		.attr("width", 100 )
@@ -173,7 +173,7 @@ function setPositions(i, idConf) {
 function readFileJson(){
     return $.ajax({
     type: 'GET',
-    url: 'http://localhost:8080/dates.json',
+    url: '/dates.json',
     async: false,
     dataType: 'json',
     data: { action : 'getList' },
@@ -190,7 +190,7 @@ function readFileJson(){
 function readFileJsonClouds(){
     return $.ajax({
     type: 'GET',
-    url: 'http://localhost:8080/clouds.json',
+    url: '/clouds.json',
     async: false,
     dataType: 'json',
     data: { action : 'getList' },
@@ -215,3 +215,6 @@ function setPositionClouds(i) {
     var cloud = configClouds[i]
     return { x: eval(cloud.var1), y: eval(cloud.var2)}
 }
+
+var dataCases = readFileJson().dates
+var configClouds = readFileJsonClouds().clouds
